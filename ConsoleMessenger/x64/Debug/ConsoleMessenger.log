@@ -1,0 +1,3 @@
+﻿  MessangerUser.cpp
+C:\Users\Karak\source\repos\ConsoleMessenger\ConsoleMessenger\MessangerUser.h(7,10): warning C4067: непредвиденные лексемы за директивой препроцессора, требуется newline
+  ConsoleMessenger.vcxproj -> C:\Users\Karak\source\repos\ConsoleMessenger\x64\Debug\ConsoleMessenger.exe
