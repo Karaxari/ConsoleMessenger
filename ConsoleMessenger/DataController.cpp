@@ -8,9 +8,20 @@ DataController::DataController() {
 // Загрузка списка зарегистрированных пользователей и переписки в общем чате
 void DataController::dataLoader()
 {
-    MessangerUser* tmpUser = new MessangerUser();
-    list<string> arrData = tmpUser->readingDataFromFile(pathUsersData);
+    // Реализация с чтением из DB
+    list<MessangerUser> arrUsers = connectionDB.selectAllUsers();
+    for (MessangerUser user : arrUsers) {
+        setUser(user);
+    }
 
+    list<string> arrMessage = connectionDB.selectMessageGeneralChat();
+    for (string message : arrMessage) {
+        setMessageGeneralChat(message);
+    }
+
+    // Реализация с чтением из файла
+    /*MessangerUser* tmpUser = new MessangerUser();
+    list<string> arrData = tmpUser->readingDataFromFile(pathUsersData);
     for (string line : arrData) {
         vector<string> arr = tmpUser->parsingStringWithSpaceDelimiter(line);
 
@@ -28,7 +39,7 @@ void DataController::dataLoader()
 
     for (string line : arrData) {
         setMessageGeneralChat(line);
-    }
+    }*/
 }
 
 void DataController::setUser(MessangerUser user)
@@ -44,8 +55,13 @@ void DataController::setMessageGeneralChat(string message)
 void DataController::loadUser(MessangerUser user)
 {
     setUser(user);
-    string data = user.getFullName();
-    user.writingDataToFile(pathUsersData, data);
+    //Сохранение данных пользователя в DB
+    connectionDB.insertUser(user);
+    
+
+    //Сохранение данных пользователя в файле
+    //string data = user.getFullName();
+    //user.writingDataToFile(pathUsersData, data);
 }
 
 // Выводит список пользователей с данными, тестировачная функция!
@@ -156,6 +172,7 @@ void DataController::sendingMessagesGeneralChat(string login)
 
     for (;;)
     {
+        temp = '0';
         system("cls");
         outMessagesGeneralChat();
         tmp_message = "";
@@ -171,8 +188,20 @@ void DataController::sendingMessagesGeneralChat(string login)
         if (tmp_message == "exit\n") {
             break;
         }
-
+        
+        //Запись сообщения общего чата в DB
         if (tmp_message.size() > 1) {
+            if (tmp_message.rfind("\n") != string::npos) {
+                tmp_message.erase(tmp_message.rfind("\n"));
+            }
+            connectionDB.insertGeneralChatMessage(login, getCurrentTimeDB(), tmp_message);
+            message = login + ":" + getCurrentTimeDB() + ":" + tmp_message;
+            setMessageGeneralChat(message);
+        }
+
+
+        //Запись сообщения общего чата в файл
+        /*if (tmp_message.size() > 1) {
             message = login + ":" + getCurrentTime() + ": " + tmp_message;
             if (message.rfind("\n") != string::npos) {
                 message.erase(message.rfind("\n"));
@@ -180,7 +209,7 @@ void DataController::sendingMessagesGeneralChat(string login)
 
             setMessageGeneralChat(message);
             _listOfUsers[login].writingDataToFile(pathGeneralChatData, message);
-        }
+        }*/
     }
 }
 

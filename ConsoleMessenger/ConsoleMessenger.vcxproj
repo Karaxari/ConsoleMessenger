@@ -24,6 +24,7 @@
     <ProjectGuid>{923788ba-24a3-475c-831e-5146fe90e49b}</ProjectGuid>
     <RootNamespace>ConsoleMessenger</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>ConsoleMessengerDB</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -128,6 +129,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="ChatMessages.cpp" />
+    <ClCompile Include="ConnectionDB.cpp" />
     <ClCompile Include="ConsoleMessenger.cpp" />
     <ClCompile Include="DataController.cpp" />
     <ClCompile Include="MessangerUser.cpp" />
@@ -135,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ChatMessages.h" />
+    <ClInclude Include="ConnectionDB.h" />
     <ClInclude Include="DataController.h" />
     <ClInclude Include="MessangerUser.h" />
     <ClInclude Include="PrivateChat.h" />

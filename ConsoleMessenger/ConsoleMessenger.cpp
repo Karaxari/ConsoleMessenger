@@ -18,6 +18,12 @@ int main()
     setlocale(LC_ALL, "rus");
     dataController = new DataController();
 
+    //connectionDB.setSQL_SELECT(L"SELECT * from test");
+    //connectionDB.setSQL_INSERT(L"INSERT INTO test(id, name) values(default, 'Vika')");
+    //connectionDB.setSQL_INSERT(L"CREATE TABLE test_2(id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255))");
+    //connectionDB.setSQL_INSERT(L"INSERT INTO test_2(id, name) values(default, 'Vika')");
+    //connectionDB.setSQL_SELECT(L"SELECT * from test_2");
+
     char choice{ '0' };
 
     // Мейн интерфейс

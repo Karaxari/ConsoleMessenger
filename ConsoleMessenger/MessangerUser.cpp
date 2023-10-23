@@ -11,6 +11,16 @@ string getCurrentTime()
     return time;
 }
 
+string getCurrentTimeDB()
+{
+    struct tm newtime;
+    time_t now = time(0);
+    localtime_s(&newtime, &now);
+    string time = to_string(newtime.tm_year + 1900) + "-" + to_string(newtime.tm_mon + 1) + "-" + to_string(newtime.tm_mday) + " "
+        + to_string(newtime.tm_hour) + ":" + to_string(newtime.tm_min) + ":" + to_string(newtime.tm_sec);
+    return time;
+}
+
 MessangerUser::~MessangerUser() {
 
 }
@@ -217,7 +227,7 @@ void MessangerUser::outUserChatList()
     }
 }
 
-// Список чатов у пользователя, и возможность отрыть нужный чат по вводу ID
+// Список чатов у пользователя, и возможность открыть нужный чат по вводу ID
 void MessangerUser::userChatList()
 {
     string input = "";

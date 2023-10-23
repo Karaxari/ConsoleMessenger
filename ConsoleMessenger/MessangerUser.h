@@ -10,6 +10,7 @@
 using namespace std;
 
 string getCurrentTime();
+string getCurrentTimeDB();
 
 const string pathToUsersChats = "DataController\\Users\\"; // Путь к директории с файлами пользователей, содержащих информацию об приватных чатах в кторых они участвуют
 const string pathPrivateChats = "DataController\\PrivateChats\\"; // Путь к директории где хранится переписки приватных чатов

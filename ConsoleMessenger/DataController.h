@@ -1,5 +1,6 @@
 #pragma once
-#include "MessangerUser.h"
+//#include "MessangerUser.h"
+#include "ConnectionDB.h"
 
 const string pathUsersData = "DataController\\allUsers.txt"; // данные пользователей: Имя, логин и пароль
 const string pathGeneralChatData = "DataController\\generalChat.txt"; // переписка общего чата
@@ -25,6 +26,7 @@ public:
 private:
 	map<string, MessangerUser> _listOfUsers; // Закрытое наслеование, релизация отнощения "содержит"
 	list <string> _generalСhat;
+	ConnectionDB connectionDB; // Объект для взаимодействия с БД
 
 	void personalAccount(string login);
 	void generalChat(string login);
